@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Istudent } from '../../modules/std';
 import { StdServicesService } from '../../Services/std-services.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-student-table',
@@ -12,7 +13,8 @@ export class StudentTableComponent implements OnInit {
   stdArr: Array<Istudent> = [];
 
   constructor(
-    private _studentService: StdServicesService
+    private _studentService: StdServicesService,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -29,22 +31,37 @@ export class StudentTableComponent implements OnInit {
 
   }
 
-  
-  onRemoveStd(stdObj: Istudent) {
 
-    this._studentService.removeStudent(stdObj)
-      .subscribe({
-        next: res => {
-  
-          console.log(res);
-  
-        },
-        error: err => {
-          console.log(err);
-        }
-      });
-  
-  }
-  
+onRemoveStd(stdObj: Istudent) {
+
+  this._studentService.removeStudent(stdObj)
+    .subscribe({
+      next: res => {
+
+        console.log(res);
+
+        this._snackBar.open(
+          'Student deleted successfully !!',
+          'Close',
+          {
+            duration: 3000
+          }
+        );
+
+      },
+      error: err => {
+        console.log(err);
+
+        this._snackBar.open(
+          'Failed to delete student !!',
+          'Close',
+          {
+            duration: 3000
+          }
+        );
+      }
+    });
+
+}
 
 }
