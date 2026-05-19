@@ -9,23 +9,42 @@ import { StdServicesService } from '../../Services/std-services.service';
 })
 export class StudentTableComponent implements OnInit {
 
-  stdArr : Array<Istudent> = []
+  stdArr: Array<Istudent> = [];
+
   constructor(
-    private _studentService:StdServicesService
+    private _studentService: StdServicesService
   ) { }
 
-  ngOnInit(): void { //Component load hota hai to automatically call hota hai.
+  ngOnInit(): void {
 
-  this._studentService.fetchstudent() //Ser.fun call
-    .subscribe({  // resive this data to observable
-      next : res => {
-        this.stdArr = res //API Call success 
-      },
-      error : err => {
-        console.log(err)
-      }
-    })
+    this._studentService.fetchstudent()
+      .subscribe({
+        next: res => {
+          this.stdArr = res;
+        },
+        error: err => {
+          console.log(err);
+        }
+      });
 
-}
+  }
+
+  
+  onRemoveStd(stdObj: Istudent) {
+
+    this._studentService.removeStudent(stdObj)
+      .subscribe({
+        next: res => {
+  
+          console.log(res);
+  
+        },
+        error: err => {
+          console.log(err);
+        }
+      });
+  
+  }
+  
 
 }

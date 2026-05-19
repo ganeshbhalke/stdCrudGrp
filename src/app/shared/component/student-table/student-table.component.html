@@ -1,40 +1,62 @@
-
-
 <div class="row">
-    <table class="table table-bordered text-center table-responsive stdtab">
-        <thead>
-            <tr>
-                <th>SR.NO</th>
-                <th>FirstName</th>
-                <th>LastName</th>
-                <th>Email</th>
-                <th>Contact</th>
-                <th>IsActive</th>
-                <th>Edit</th>
-                <th>Remove</th>
-              
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let std of stdArr;let i=index">
-                <td>{{i + 1}}</td>
-                <td>{{std.fname}}</td>
-                <td>{{std.lname}}</td>
-                <td>{{std.email}}</td>
-                <td>{{std.contact}}</td>
-                <td>{{std.isActive}}</td>
-               <td>
-                    <button mat-mini-fab color="primary">
-                        <mat-icon>edit</mat-icon>
-                    </button>
-                </td>
-                <td>
-                      <button mat-mini-fab color="warn">
-                        <mat-icon>delete</mat-icon>
-                    </button>
-                </td>
-            </tr>
-        </tbody>
 
-    </table>
+    <div *ngIf="stdArr.length > 0; else noStd">
+
+        <table class="table table-bordered text-center table-responsive stdtab">
+
+            <thead>
+                <tr>
+                    <th>SR.NO</th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>IsActive</th>
+                    <th>Edit</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let std of stdArr; let i = index">
+
+                    <td>{{i + 1}}</td>
+                    <td>{{std.fname}}</td>
+                    <td>{{std.lname}}</td>
+                    <td>{{std.email}}</td>
+                    <td>{{std.contact}}</td>
+                    <td>{{std.isActive}}</td>
+
+                    <td>
+                        <button mat-mini-fab color="primary">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    </td>
+
+                    <td>
+                        <button
+                            mat-mini-fab
+                            color="warn"
+                            (click)="onRemoveStd(std)">
+
+                            <mat-icon>delete</mat-icon>
+
+                        </button>
+                    </td>
+
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <ng-template #noStd>
+
+        <p class="alert alert-info text-center">
+            No Students Found !!!
+        </p>
+
+    </ng-template>
+
 </div>
