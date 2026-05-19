@@ -32,6 +32,7 @@ private _studentService : StdServicesService,
         ...this.stdForm.value,stdId:Date.now().toString()
       }
       console.log(stdobj);
+      this.stdForm.reset()
 
       this._studentService.createStudent(stdobj) //it will return observable than consum subscribe method
       .subscribe({
