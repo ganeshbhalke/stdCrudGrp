@@ -28,16 +28,33 @@
                     <option [ngValue]="false">NO</option>
                 </select>
             </div>
-             <div>
-            <button 
-            *ngIf="!isInEditMode"
-            [disabled]="stdForm.invalid"
-            type="submit" mat-raised-button class="w-100" color="primary">ADD STUDENT</button>
-            <button
-            *ngIf="isInEditMode"
-                [disabled]="stdForm.invalid"
-            type="button" mat-raised-button class="w-100" color="warn">UPDATE STUDENT</button>
-            </div>
+             <div class="mt-4">
+
+    <button 
+        *ngIf="!isInEditMode"
+        [disabled]="stdForm.invalid"
+        type="submit"
+        mat-raised-button
+        color="primary"
+        class="addBtn">
+
+        ADD STUDENT
+
+    </button>
+
+    <button
+        *ngIf="isInEditMode"
+        [disabled]="stdForm.invalid"
+        type="button"
+        mat-raised-button
+        color="warn"
+        class="addBtn">
+
+        UPDATE STUDENT
+
+    </button>
+
+</div>
         </form>
     </div>
 </div>
